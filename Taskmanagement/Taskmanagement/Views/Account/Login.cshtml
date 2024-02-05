@@ -1,0 +1,68 @@
+﻿@model Taskmanagement.Models.user
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+        <div class="container">
+            @Html.ActionLink("Task Management", "Signup", "Account", new { area = "" }, new { @class = "navbar-brand" })
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+                    <li>@Html.ActionLink("Task List", "Display", "Tasks", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Create Task", "Create", "Tasks", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Edit Task", "Update", "Tasks", new { area = "" }, new { @class = "nav-link" })</li>
+
+                    @if (User.Identity.IsAuthenticated)
+                     {
+                        <li><a>Dear - @User.Identity.Name</a></li>
+                        <li style="margin-left:500px">@Html.ActionLink("Logout", "Logout", "Account")</li>
+                     }
+                    else
+                    {
+                        <li style="margin-left:600px">@Html.ActionLink("Login", "Login", "Account")</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div>
+        <h2 style="text-align:center">Login Your Account</h2>
+        @using (Html.BeginForm())
+        {
+            <table align="center">
+                <tr>
+                    <td>Username : </td>
+                    <td>@Html.TextBoxFor(e => e.UserName, new { @class = "btn btn-outline-success" })</td>
+                </tr>
+                <tr>
+                    <td>Password : </td>
+                    <td>@Html.PasswordFor(e => e.Passworord, new { @class = "btn btn-outline-success" })</td>
+                </tr>
+                <tr>
+                    <td>
+                        <br />
+                        <input type="submit" class="btn btn-primary" value="Login" />
+                    </td>
+                </tr>
+            </table>
+        }
+    </div>
+    <div style="text-align:center">
+        @Html.ActionLink("Click to Signup", "Signup")
+    </div>
+</body>
+</html>
