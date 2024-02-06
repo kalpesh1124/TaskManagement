@@ -11,20 +11,23 @@ namespace Taskmanagement.Models
 {
     using System;
     using System.Collections.Generic;
-    
-    public partial class Userinfo
+    using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
+
+    public partial class UserInfo
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Userinfo()
-        {
-            this.UserRoles = new HashSet<UserRole>();
-        }
-    
-        public int uid { get; set; }
-        public string UserName { get; set; }
-        public string Passworord { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserRole> UserRoles { get; set; }
+        public int id { get; set; }
+
+        [Required(ErrorMessage ="Please Enter User Name !!!")]
+        public string username { get; set; }
+
+
+        [DataType(DataType.Password)]
+        [RegularExpression("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[#$^+=!*()@%&]).{8,}$", ErrorMessage = "Please Enter Correct Password !!!")]
+        [Required(ErrorMessage = "Please Enter Password !!")]
+        public string password { get; set; }
+
+        
+        public string role { get; set; }
     }
 }

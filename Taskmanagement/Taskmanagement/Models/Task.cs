@@ -12,17 +12,19 @@ namespace Taskmanagement.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+
     public partial class Task
     {
+        
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Please Enter Task Title !!")]
+        [Required (ErrorMessage ="Enter Task Title")] 
         public string Title { get; set; }
 
-        [Required(ErrorMessage = "Please Enter Task Description !!")]
+        [Required(ErrorMessage = "Enter Task Description")]
         public string Description { get; set; }
 
-        [Required(ErrorMessage = "Please Enter Task Due Date !!")]
+        [Required(ErrorMessage = "Enter Task DueDate")]
         public Nullable<System.DateTime> Dates { get; set; }
     }
 }

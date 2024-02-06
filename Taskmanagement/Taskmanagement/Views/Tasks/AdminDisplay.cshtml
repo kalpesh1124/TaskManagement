@@ -8,8 +8,8 @@
                     <th>Task Title </th>
                     <th>Task Description </th>
                     <th>Task Due Date </th>
-                    <th>Update</th>
-                    @*<th>Delete</th>*@
+                    
+                    <th>Delete</th>
                 </tr>
             </thead>
             
@@ -21,13 +21,12 @@
                         <td>@item.Description</td>
                         <td>@item.Dates</td>
                         &nbsp;
-                        <td>@Html.ActionLink("Edit Task", "update", new { @id = item.Id })</td>
-                        @*&nbsp;
-                            <td>@Html.ActionLink("Delete Task", "Delete", new { @id = item.Id })</td>*@
+                        
+                        <td>@Html.ActionLink("Delete Task", "Delete", new { @id = item.Id })</td>
                     </tr>
                 }
             }
         </table>
-        @*@Html.ActionLink("Create task", "Create", new { @class = "bg-primary text-bg-dark" })*@
+       
     </div>
 

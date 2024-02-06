@@ -11,7 +11,7 @@ namespace Taskmanagement.Controllers
     [Authorize]
     public class TasksController : Controller
     {
-        TaskManagementEntities2 db = new TaskManagementEntities2();
+        TaskManagementEntities4 db = new TaskManagementEntities4();
         // GET: Tasks
         public ActionResult Index()
         {
@@ -24,7 +24,13 @@ namespace Taskmanagement.Controllers
             return View(Employees);
         }
 
-        //[Authorize(Roles ="User")]
+        public ActionResult AdminDisplay()
+        {
+            List<Task> Employees = db.Tasks.ToList();
+            return View(Employees);
+        }
+
+        [Authorize(Roles ="User , Admin")]
         public ActionResult Create()
         {
             return View();
@@ -47,7 +53,7 @@ namespace Taskmanagement.Controllers
             }
         }
 
-        //[Authorize(Roles ="User")]
+        [Authorize(Roles ="User")]
         public ActionResult Update(int id)
         {
             Task s2 = db.Tasks.Find(id);
@@ -55,7 +61,7 @@ namespace Taskmanagement.Controllers
         }
 
         [HttpPost]
-        //[Authorize(Roles ="User")]
+        [Authorize(Roles ="User")]
         public ActionResult Update(Task s3)
         {
             db.Entry<Task>(s3).State = EntityState.Modified;
@@ -63,13 +69,13 @@ namespace Taskmanagement.Controllers
             return RedirectToAction("Display");
         }
 
-        //[Authorize(Roles ="Admin")]
+        [Authorize(Roles ="Admin")]
         public ActionResult Delete(int id)
         {
             Task s4 = db.Tasks.Find(id);
             db.Tasks.Remove(s4);
             db.SaveChanges();
-            return RedirectToAction("Display");
+            return RedirectToAction("AdminDisplay");
         }
     }
 }

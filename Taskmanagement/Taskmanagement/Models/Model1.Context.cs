@@ -13,10 +13,10 @@ namespace Taskmanagement.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class TaskManagementEntities2 : DbContext
+    public partial class TaskManagementEntities4 : DbContext
     {
-        public TaskManagementEntities2()
-            : base("name=TaskManagementEntities2")
+        public TaskManagementEntities4()
+            : base("name=TaskManagementEntities4")
         {
         }
     
@@ -26,7 +26,6 @@ namespace Taskmanagement.Models
         }
     
         public virtual DbSet<Task> Tasks { get; set; }
-        public virtual DbSet<Userinfo> Userinfoes { get; set; }
-        public virtual DbSet<UserRole> UserRoles { get; set; }
+        public virtual DbSet<UserInfo> UserInfoes { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -37,18 +38,17 @@ namespace Taskmanagement
         }
 
         public override string[] GetRolesForUser(string username)
-        {
-            using (var context = new TaskManagementEntities2())
+        { 
+            using (var context = new TaskManagementEntities4())
             {
-                //var result = (from Userinfo in context.Userinfoes 
-                //              join Roles in context.UserRoles on Userinfo.uid equals Roles.Uid
-                //              where Userinfo.UserName == username 
-                //              select Roles.Role).ToArray();
+                var result = (from Userinfo in context.UserInfoes
+                              where Userinfo.username == username
+                              select Userinfo.role).ToArray();
 
-                var result = (from user in context.Userinfoes
-                             join Roles in context.UserRoles on user.uid equals Roles.Uid
-                             where user.UserName == username
-                             select Roles.Role).ToArray();
+                //var result = (from user in context.UserInfoes
+                //            join Roles in context.UserInfoes on user.id equals Roles
+                //            where user.UserName == username
+                //            select Roles.Role).ToArray();
 
                 return result;
             }
